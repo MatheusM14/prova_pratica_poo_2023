@@ -1,6 +1,7 @@
 package prova;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class DepartamentoTransito {
 
         return contagemMaxima(contagemBicicletas);
     }  
+    
     public Rodovia rodoviaComMaisAcidentesComVitimasFatais() {
         Map<Rodovia, Integer> contagemVitimasFatais = new HashMap<>();
 
@@ -41,6 +43,7 @@ public class DepartamentoTransito {
 
         return contagemMaxima(contagemVitimasFatais);
     } 
+    
     public int quantidadeAcidentesComVeiculosNovos() {
         int quantidade = 0;
         for (Acidente acidente : acidentes) {
@@ -66,19 +69,8 @@ public class DepartamentoTransito {
 
         return rodoviasCarnaval;
     }
-
    
     private <K> K contagemMaxima(Map<K, Integer> contagem) {
-        K maxKey = null;
-        int maxCount = Integer.MIN_VALUE;
-
-        for (Map.Entry<K, Integer> entry : contagem.entrySet()) {
-            if (entry.getValue() > maxCount) {
-                maxKey = entry.getKey();
-                maxCount = entry.getValue();
-            }
-        }
-
-        return maxKey;
+        return Collections.max(contagem.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 }
